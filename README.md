@@ -1,5 +1,5 @@
 # GameBubblesJS
 
-Click bubbles until all bubbles become same color.
+Click bubbles until all bubbles become the same color.
 
-Example of dynamic table creation and change.
+Example of table dynamic creation and changing.
