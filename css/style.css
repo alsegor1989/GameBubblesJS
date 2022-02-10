@@ -1,7 +1,15 @@
 .circle {
-	width: 80px;
-	height: 80px;
+	width: 70px;
+	height: 70px;
 	display: block;
 	margin-top: 10px;
 	border-radius: 100%;
+}
+
+.blue {
+	background-color: blue;
+}
+
+.red {
+	background-color: red;
 }

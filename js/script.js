@@ -5,10 +5,11 @@ let maxRows = 0,
     maxCols = 0,
     color = 0,
     circles,
-    score = 0;
+    score = 0,
+    firstColor;
 
 const gameTable = document.querySelector('.game_table'),
-      gameScore = document.getElementById('game_score');
+    gameScore = document.getElementById('game_score');
 
 //------ functions
 function fillTable() {
@@ -25,12 +26,12 @@ function fillTable() {
             if (color == 0) {
                 tableText += `
                         <td>
-                            <button class="circle" style="background-color: red;"></button>
+                            <button class="circle blue"></button>
                         </td>`;
             } else {
                 tableText += `
                         <td>
-                            <button class="circle" style="background-color: blue;"></button>
+                            <button class="circle red"></button>
                         </td>`;
             }
         }
@@ -40,7 +41,7 @@ function fillTable() {
 
     gameTable.innerHTML = tableText;
     circles = document.querySelectorAll('.circle');
-    
+
     if (isSameColors()) {
         startGame();
     }
@@ -55,18 +56,15 @@ function getRandomArbitrary(min, max) {
 }
 
 function addColorChange() {
-    circles.forEach((btn) => {
-        btn.addEventListener('click',  () => {
-            if (btn.style.backgroundColor == 'red') {
-                btn.style.backgroundColor = 'blue';
-            } else {
-                btn.style.backgroundColor = 'red';
-            }
-            if (isSameColors()) {
-                changeScore();
-                startGame();
-            }
-        });
+    gameTable.addEventListener('click', (event) => {
+        if (event.target && event.target.matches("button.circle")) {
+            event.target.classList.toggle('red');
+            event.target.classList.toggle('blue');
+        }
+        if (isSameColors()) {
+            changeScore();
+            startGame();
+        }
     });
 }
 
@@ -76,10 +74,15 @@ function changeScore() {
 }
 
 function isSameColors() {
-    const firstColor = circles[0].style.backgroundColor;
+    if (circles[0].classList.contains('red')) {
+        firstColor = 'red';
+    } else {
+        firstColor = 'blue';
+    }
+
     let sameColor = true;
     circles.forEach((btn) => {
-        if (firstColor != btn.style.backgroundColor) {
+        if (!btn.classList.contains(firstColor)) {
             sameColor = false;
         }
     });
@@ -88,10 +91,10 @@ function isSameColors() {
 
 function startGame() {
     fillTable();
-    addColorChange(); 
 }
 
 //------ main program
 document.addEventListener('DOMContentLoaded', () => {
+    addColorChange();
     startGame();
 });
