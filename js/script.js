@@ -6,10 +6,12 @@ let maxRows = 0,
     color = 0,
     circles,
     score = 0,
+    bestScore = 0,
     firstColor;
 
 const gameTable = document.querySelector('.game_table'),
-    gameScore = document.getElementById('game_score');
+    gameScore = document.querySelector('#game_score'),
+    gameBestScore = document.querySelector('#game_best_score');
 
 //------ functions
 function fillTable() {
@@ -71,6 +73,11 @@ function addColorChange() {
 function changeScore() {
     score += circles.length;
     gameScore.textContent = `Score: ${score}`;
+    if(score > bestScore) {
+        bestScore = score;
+        localStorage.setItem('bestScore', bestScore);
+        fillBestScore();
+    }
 }
 
 function isSameColors() {
@@ -89,8 +96,16 @@ function isSameColors() {
     return sameColor;
 }
 
+function fillBestScore() {
+    if (localStorage.getItem('bestScore')) {
+        bestScore = localStorage.getItem('bestScore');
+        gameBestScore.textContent = `Best score: ${bestScore}`; 
+    }
+}
+
 function startGame() {
     fillTable();
+    fillBestScore();
 }
 
 //------ main program
