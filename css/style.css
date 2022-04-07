@@ -1,15 +1,37 @@
+.game_table {
+    margin: auto;
+}
+
 .circle {
-	width: 70px;
-	height: 70px;
-	display: block;
-	margin-top: 10px;
-	border-radius: 100%;
+  width: 70px;
+  height: 70px;
+  display: block;
+  margin: 5px;
+  border-radius: 100%;
+  box-shadow: 0.375em 0.375em 0 0 rgba(15, 28, 63, 0.2);
 }
 
 .blue {
-	background-color: blue;
+  background-color: rgb(69, 107, 217);
+  border: 2px solid rgb(107, 136, 225);
 }
 
 .red {
-	background-color: red;
+  background-color: rgb(255, 51, 70);
+  border: 2px solid rgb(255, 102, 117);
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+body {
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 0.5) 0%,
+    rgba(253, 29, 29, 0.5) 50%,
+    rgba(252, 176, 69, 0.5) 100%
+  );
 }
